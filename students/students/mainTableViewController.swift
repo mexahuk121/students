@@ -11,6 +11,9 @@ import UIKit
 class mainTableViewController: UITableViewController {
     
     var studentsName: [String] = ["Вася", "Петя", "Алексей", "Сергей", "Валентин"]
+    var studentsSurname: [String] = ["Иванов", "Сергеев", "Петров", "Цветочкин", "Васечкин"]
+    
+    
     @IBAction func saveToMainViewController(_ segue: UIStoryboardSegue ) {
         let editViewController = segue.source as! editTableViewController
         
@@ -50,7 +53,8 @@ class mainTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
 
         cell.textLabel?.text = studentsName[indexPath.row]
-
+        
+        
         return cell
     }
     
