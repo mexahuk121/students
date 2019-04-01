@@ -153,6 +153,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="editStudentsNameTextField" destination="omH-OY-JjL" id="jxg-Fb-Em3"/>
+                        <outlet property="editStudentsPointTextField" destination="s8Z-FH-BFd" id="5lt-Yt-0gr"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ax-et-L09" userLabel="First Responder" sceneMemberID="firstResponder"/>

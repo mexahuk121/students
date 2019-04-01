@@ -11,18 +11,16 @@ import UIKit
 class mainTableViewController: UITableViewController {
     
     var studentsName: [String] = ["Вася", "Петя", "Алексей", "Сергей", "Валентин"]
-    var studentsSurname: [String] = ["Иванов", "Сергеев", "Петров", "Цветочкин", "Васечкин"]
+    var studentsPoint: [String] = ["5", "4", "3", "2", "1"]
     
     
     @IBAction func saveToMainViewController(_ segue: UIStoryboardSegue ) {
         let editViewController = segue.source as! editTableViewController
-        
         let index = editViewController.index
-        
-        let studentsNameString = editViewController.editedStudensName
-        
+        let studentsNameString = editViewController.editedStudentsName
         studentsName[index!] = studentsNameString!
-        
+         let studentsPointString = editViewController.editedStudentsPoint
+        studentsPoint[index!] = studentsPointString!
         tableView.reloadData()
     }
    
@@ -53,7 +51,7 @@ class mainTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
 
         cell.textLabel?.text = studentsName[indexPath.row]
-        
+        cell.detailTextLabel?.text = "Cредний балл: \(studentsPoint[indexPath.row])"
         
         return cell
     }
@@ -67,6 +65,7 @@ class mainTableViewController: UITableViewController {
             
             editViewController.index = path?.row
             editViewController.studentsNameArray = studentsName
+            editViewController.studentsPointArray = studentsPoint
         }
     }
     

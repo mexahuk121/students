@@ -11,26 +11,24 @@ import UIKit
 class editTableViewController: UITableViewController {
 
     @IBOutlet weak var editStudentsNameTextField: UITextField!
+    @IBOutlet weak var editStudentsPointTextField: UITextField!
     var index:Int?
-    
     var studentsNameArray:[String]!
-    
-    var editedStudensName:String?
-    
+    var editedStudentsName:String?
+    var studentsPointArray:[String]!
+    var editedStudentsPoint:String?
     override func viewDidLoad() {
-        super.viewDidLoad()
         
+        super.viewDidLoad()
         editStudentsNameTextField.text = studentsNameArray[index!]
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        editStudentsPointTextField.text = studentsPointArray[index!]
+       
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         if indexPath.section == 0 && indexPath.row == 0 {
             editStudentsNameTextField.becomeFirstResponder()
+            editStudentsPointTextField.becomeFirstResponder()
         }
         tableView.deselectRow(at: indexPath as IndexPath, animated: true)
         
@@ -102,10 +100,10 @@ class editTableViewController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "save" {
-            editedStudensName = editStudentsNameTextField.text
+            editedStudentsName = editStudentsNameTextField.text
+            editedStudentsPoint = editStudentsPointTextField.text
         }
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        
     }
  
 
