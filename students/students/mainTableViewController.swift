@@ -10,7 +10,8 @@ import UIKit
 
 class mainTableViewController: UITableViewController {
     
-    var studentsName: [String] = ["Вася", "Петя", "Алексей", "Сергей", "Валентин"]
+    var studentsName: [String] = ["Вася", "Иван", "Алексей", "Петр", "Николай"]
+    var studentsSurname: [String] = ["Иванов", "Алексеев", "Петров", "Цветочкин", "Васечкин"]
     var studentsPoint: [String] = ["5", "4", "3", "2", "1"]
     
     
@@ -19,7 +20,9 @@ class mainTableViewController: UITableViewController {
         let index = editViewController.index
         let studentsNameString = editViewController.editedStudentsName
         studentsName[index!] = studentsNameString!
-         let studentsPointString = editViewController.editedStudentsPoint
+        let studentsSurnameString = editViewController.editedStudentsSurname
+        studentsSurname[index!] = studentsSurnameString!
+        let studentsPointString = editViewController.editedStudentsPoint
         studentsPoint[index!] = studentsPointString!
         tableView.reloadData()
     }
@@ -50,7 +53,7 @@ class mainTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
 
-        cell.textLabel?.text = studentsName[indexPath.row]
+        cell.textLabel?.text = "\(studentsSurname[indexPath.row]) \(studentsName[indexPath.row])"
         cell.detailTextLabel?.text = "Cредний балл: \(studentsPoint[indexPath.row])"
         
         return cell
@@ -65,8 +68,18 @@ class mainTableViewController: UITableViewController {
             
             editViewController.index = path?.row
             editViewController.studentsNameArray = studentsName
-            editViewController.studentsPointArray = studentsPoint
+            editViewController.studentsSurnameArray = studentsSurname
+            editViewController.studentsPointArray = studentsPoint	
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            self.studentsName.remove(at: indexPath.row)
+            self.studentsSurname.remove(at: indexPath.row)
+            self.studentsPoint.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        
     }
     
 
@@ -116,3 +129,4 @@ class mainTableViewController: UITableViewController {
  
 
 
+}

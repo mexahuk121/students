@@ -9,18 +9,25 @@
 import UIKit
 
 class editTableViewController: UITableViewController {
-
+    
     @IBOutlet weak var editStudentsNameTextField: UITextField!
     @IBOutlet weak var editStudentsPointTextField: UITextField!
+    
+    @IBOutlet weak var editStudentsSurnameTextField: UITextField!
+    
+    
     var index:Int?
     var studentsNameArray:[String]!
     var editedStudentsName:String?
+    var studentsSurnameArray:[String]!
+    var editedStudentsSurname:String?
     var studentsPointArray:[String]!
     var editedStudentsPoint:String?
     override func viewDidLoad() {
         
         super.viewDidLoad()
         editStudentsNameTextField.text = studentsNameArray[index!]
+        editStudentsSurnameTextField.text = studentsSurnameArray[index!]
         editStudentsPointTextField.text = studentsPointArray[index!]
        
     }
@@ -28,6 +35,7 @@ class editTableViewController: UITableViewController {
     func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         if indexPath.section == 0 && indexPath.row == 0 {
             editStudentsNameTextField.becomeFirstResponder()
+            editStudentsSurnameTextField.becomeFirstResponder()
             editStudentsPointTextField.becomeFirstResponder()
         }
         tableView.deselectRow(at: indexPath as IndexPath, animated: true)
@@ -101,6 +109,7 @@ class editTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "save" {
             editedStudentsName = editStudentsNameTextField.text
+            editedStudentsSurname = editStudentsSurnameTextField.text
             editedStudentsPoint = editStudentsPointTextField.text
         }
         

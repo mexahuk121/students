@@ -53,6 +53,11 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Список студентов" id="29B-wN-E0Z">
                         <barButtonItem key="backBarButtonItem" title="Отмена" id="Zlq-rH-oPd"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="9mq-xg-YZX">
+                            <connections>
+                                <segue destination="wII-wX-3cz" kind="show" id="o9r-Bq-kVQ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zDr-8J-CKq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -154,6 +159,8 @@
                     <connections>
                         <outlet property="editStudentsNameTextField" destination="omH-OY-JjL" id="jxg-Fb-Em3"/>
                         <outlet property="editStudentsPointTextField" destination="s8Z-FH-BFd" id="5lt-Yt-0gr"/>
+                        <outlet property="editStudentsSurnameTextField" destination="1qv-6d-cse" id="oSX-7i-fiP"/>
+                        <outletCollection property="editStudentsSurnameTextField" destination="1qv-6d-cse" collectionClass="NSMutableArray" id="cgG-6v-9PS"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ax-et-L09" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -178,4 +185,7 @@
             <point key="canvasLocation" x="-610" y="112"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="0yV-J4-6F0"/>
+    </inferredMetricsTieBreakers>
 </document>
