@@ -12,7 +12,6 @@ class editTableViewController: UITableViewController {
     
     @IBOutlet weak var editStudentsNameTextField: UITextField!
     @IBOutlet weak var editStudentsPointTextField: UITextField!
-    
     @IBOutlet weak var editStudentsSurnameTextField: UITextField!
     
     
@@ -23,15 +22,15 @@ class editTableViewController: UITableViewController {
     var editedStudentsSurname:String?
     var studentsPointArray:[String]!
     var editedStudentsPoint:String?
+    
     override func viewDidLoad() {
-        
-        super.viewDidLoad()
+        if studentsNameArray != nil && studentsSurnameArray != nil && studentsPointArray != nil {
         editStudentsNameTextField.text = studentsNameArray[index!]
         editStudentsSurnameTextField.text = studentsSurnameArray[index!]
-        editStudentsPointTextField.text = studentsPointArray[index!]
-       
-    }
+        editStudentsPointTextField.text = studentsPointArray[index!] }
+    }	
     
+
     func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         if indexPath.section == 0 && indexPath.row == 0 {
             editStudentsNameTextField.becomeFirstResponder()
@@ -39,7 +38,7 @@ class editTableViewController: UITableViewController {
             editStudentsPointTextField.becomeFirstResponder()
         }
         tableView.deselectRow(at: indexPath as IndexPath, animated: true)
-        
+    
     }
    
     

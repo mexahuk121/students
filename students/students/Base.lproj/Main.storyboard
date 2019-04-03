@@ -55,7 +55,7 @@
                         <barButtonItem key="backBarButtonItem" title="Отмена" id="Zlq-rH-oPd"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="9mq-xg-YZX">
                             <connections>
-                                <segue destination="wII-wX-3cz" kind="show" id="o9r-Bq-kVQ"/>
+                                <segue destination="wII-wX-3cz" kind="show" identifier="add" id="o9r-Bq-kVQ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -186,6 +186,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="0yV-J4-6F0"/>
+        <segue reference="o9r-Bq-kVQ"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -18,14 +18,30 @@ class mainTableViewController: UITableViewController {
     @IBAction func saveToMainViewController(_ segue: UIStoryboardSegue ) {
         let editViewController = segue.source as! editTableViewController
         let index = editViewController.index
-        let studentsNameString = editViewController.editedStudentsName
-        studentsName[index!] = studentsNameString!
-        let studentsSurnameString = editViewController.editedStudentsSurname
-        studentsSurname[index!] = studentsSurnameString!
-        let studentsPointString = editViewController.editedStudentsPoint
-        studentsPoint[index!] = studentsPointString!
-        tableView.reloadData()
+       
+        if editViewController.studentsNameArray == nil && editViewController.studentsSurnameArray == nil && editViewController.studentsPointArray == nil {
+            studentsName.append(editViewController.editedStudentsName!)
+            studentsSurname.append(editViewController.editedStudentsSurname!)
+            studentsPoint.append(editViewController.editedStudentsPoint!)
+            let indexToInsert = studentsName.count == 0 ? 0 : studentsName.count - 1
+            
+            let indexPath = NSIndexPath(row: indexToInsert, section: 0)
+            
+            tableView.insertRows(at: [indexPath as IndexPath], with: UITableView.RowAnimation.automatic)
+            tableView.reloadData()
+        } else {
+            let studentsNameString = editViewController.editedStudentsName
+            studentsName[index!] = studentsNameString!
+            let studentsSurnameString = editViewController.editedStudentsSurname
+            studentsSurname[index!] = studentsSurnameString!
+            let studentsPointString = editViewController.editedStudentsPoint
+            studentsPoint[index!] = studentsPointString!
+            tableView.reloadData()
+        }
+        
     }
+
+
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,6 +86,11 @@ class mainTableViewController: UITableViewController {
             editViewController.studentsNameArray = studentsName
             editViewController.studentsSurnameArray = studentsSurname
             editViewController.studentsPointArray = studentsPoint	
+        }
+        if segue.identifier == "add" {
+           
+            let editViewController = segue.destination as! editTableViewController
+            
         }
     }
     
