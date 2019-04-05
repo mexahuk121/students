@@ -16,33 +16,46 @@ class mainTableViewController: UITableViewController {
     
     
     @IBAction func saveToMainViewController(_ segue: UIStoryboardSegue ) {
+        
+        func presentAlert(withTitle title: String, message : String) {
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            let OKAction = UIAlertAction(title: "OK", style: .default)
+            alertController.addAction(OKAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
         let editViewController = segue.source as! editTableViewController
         let index = editViewController.index
-       
-        if editViewController.studentsNameArray == nil && editViewController.studentsSurnameArray == nil && editViewController.studentsPointArray == nil {
-            studentsName.append(editViewController.editedStudentsName!)
-            studentsSurname.append(editViewController.editedStudentsSurname!)
-            studentsPoint.append(editViewController.editedStudentsPoint!)
-            let indexToInsert = studentsName.count == 0 ? 0 : studentsName.count - 1
-            
-            let indexPath = NSIndexPath(row: indexToInsert, section: 0)
-            
-            tableView.insertRows(at: [indexPath as IndexPath], with: UITableView.RowAnimation.automatic)
-            tableView.reloadData()
+        let name1 = editViewController.editedStudentsName
+        let surname1 = editViewController.editedStudentsSurname
+        let point1 = editViewController.editedStudentsPoint
+        let characterset1 = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZйцукенгшщзхъэждлорпавыфячсмитьбюЙЦУКЕНГШЩЗХЪЭЖДЛОРПАВЫФЯЧСМИТЬБЮ")
+        let characterset2 = CharacterSet(charactersIn: "12345")
+        if name1?.rangeOfCharacter(from: characterset1.inverted) != nil && surname1?.rangeOfCharacter(from: characterset1.inverted) != nil && point1?.rangeOfCharacter(from: characterset2.inverted) != nil{
+            presentAlert(withTitle: "Ошибка", message: "Проверьте правильность ввода данных")
         } else {
-            let studentsNameString = editViewController.editedStudentsName
-            studentsName[index!] = studentsNameString!
-            let studentsSurnameString = editViewController.editedStudentsSurname
-            studentsSurname[index!] = studentsSurnameString!
-            let studentsPointString = editViewController.editedStudentsPoint
-            studentsPoint[index!] = studentsPointString!
-            tableView.reloadData()
+            if editViewController.studentsNameArray == nil && editViewController.studentsSurnameArray == nil && editViewController.studentsPointArray == nil {
+                studentsName.append(editViewController.editedStudentsName!)
+                studentsSurname.append(editViewController.editedStudentsSurname!)
+                studentsPoint.append(editViewController.editedStudentsPoint!)
+                let indexToInsert = studentsName.count == 0 ? 0 : studentsName.count - 1
+                let indexPath = NSIndexPath(row: indexToInsert, section: 0)
+                tableView.insertRows(at: [indexPath as IndexPath], with: UITableView.RowAnimation.automatic)
+                tableView.reloadData()
+            } else {
+                let studentsNameString = editViewController.editedStudentsName
+                studentsName[index!] = studentsNameString!
+                let studentsSurnameString = editViewController.editedStudentsSurname
+                studentsSurname[index!] = studentsSurnameString!
+                let studentsPointString = editViewController.editedStudentsPoint
+                studentsPoint[index!] = studentsPointString!
+                tableView.reloadData()
         }
-        
+        }
     }
+    
 
 
-   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
